@@ -53,11 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
     addProductFormContainer.style.display = "none";
   });
 
-  // Toggle chat container
-  chatToggle.addEventListener("click", function () {
-    chatContainer.classList.toggle("chat-open");
-  });
-
   // Sample chat list data
   const chatList = [
     { id: 1, name: "Seller 1", img: "avatar1.jpg" },
