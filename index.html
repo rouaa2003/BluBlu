@@ -1,98 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blue Market</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-</head>
-<body>
-    <nav>
-        <h1 class="nav-p">Blue Market</h1>
-        <button class="nav-button"><i class="fas fa-home"></i></button>
-        <button class="nav-button"><i class="fas fa-filter"></i></button>
-        <div class="nav-search">
-            <input type="text" placeholder="Search...">
-            <button type="submit"><i class="fas fa-search"></i></button>
-        </div>
-        <button class="nav-button"><i class="fas fa-info-circle"></i></button>
-        <button class="nav-button chat-icon" id="chat-toggle"><i class="fas fa-comments"></i></button>
-    </nav>
-    <header>
-        <h1>Welcome to the Blue Market</h1>
-        <p>Buy and sell used products easily</p>
-    </header>
-    <main>
-        <div class="product-grid" id="product-grid">
-            <!-- Product cards will be dynamically inserted here -->
-            <div class="product-card" data-seller="John Doe">
-                <img src="image1.jpg" alt="Product 1">
-                <div class="product-details">
-                    <h3>Product 1</h3>
-                    <p>Condition: New</p>
-                    <p>Status: Available</p>
-                    <p>City: Damascus</p>
-                    <p>Categories: Clothes, Electronics</p>
-                    <button class="chat-button">Chat with Seller</button>
-                    <button class="sell-button">Mark as Sold</button>
-                </div>
-            </div>
-            <!-- Repeat product-card as needed -->
-            <button id="add-product-button" class="add-product-button"><i class="fas fa-plus"></i></button>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Blue Market. All rights reserved.</p>
-    </footer>
-    <div id="add-product-form-container" class="add-product-form-container">
-        <form id="add-product-form">
-            <h2>Add New Product</h2>
-            <label for="product-name">Product Name:</label>
-            <input type="text" id="product-name" name="product-name" required>
-            <label for="product-condition">Condition:</label>
-            <input type="text" id="product-condition" name="product-condition" required>
-            <label for="product-image">Image URL:</label>
-            <input type="text" id="product-image" name="product-image" required>
-            <label for="product-status">Status:</label>
-            <select id="product-status" name="product-status" required>
-                <option value="available">Available</option>
-                <option value="sold">Sold</option>
-            </select>
-            <label for="product-city">City:</label>
-            <select id="product-city" name="product-city" required>
-                <option value="Damascus">Damascus</option>
-                <option value="Aleppo">Aleppo</option>
-                <option value="Homs">Homs</option>
-                <option value="Latakia">Latakia</option>
-                <option value="Tartus">Tartus</option>
-            </select>
-            <button type="submit">Add Product</button>
-            <button type="button" id="cancel-button">Cancel</button>
-        </form>
-    </div>
-    <div id="chat-container" class="chat-container">
-        <div class="chat-list">
-            <h2>Chats</h2>
-            <div class="chat-item">Chat 1</div>
-            <div class="chat-item">Chat 2</div>
-            <div class="chat-item">Chat 3</div>
-      
-            <!-- More chat items as needed -->
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+    />
+  </head>
 
-     <!-- </div>
-         <div class="chat-content">
-            <h2>Chat Details</h2>
-            <div class="messages">
-                <p>Previous messages will be displayed here...</p>
-            </div>
-            <div class="new-message">
-                <input type="text" placeholder="Type your message...">
-                <button>Send</button>
-            </div>
-        </div> -->    
-       
+  <body>
+    <!-- Header -->
+    <div>
+      <div w3-include-html="components/navigation/navigation.html"></div>
     </div>
+    <div w3-include-html="components/header/header.html"></div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Product Grid -->
+      <div w3-include-html="components/product-grid.html"></div>
+
+      <!-- Add Product Form -->
+      <div w3-include-html="components/product-form.html"></div>
+    </main>
+
+    <!-- Chat -->
+    <div id="chat-container" class="chat-container">
+      <div w3-include-html="components/chat.html"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Blue Market. All rights reserved.</p>
+    </footer>
+    <!-- Scripts -->
     <script src="scripts.js"></script>
-</body>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+    <script>
+      w3.includeHTML();
+    </script>
+  </body>
 </html>
