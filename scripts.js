@@ -56,9 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
             chatContainer.style.display = "flex";
             chatOverlay.style.display = "flex"; // Show chat overlay
-
-          
-
         } else {
             chatContainer.style.display = "none";
             chatOverlay.style.display = "none"; // Hide chat overlay
