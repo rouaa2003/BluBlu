@@ -1,0 +1,32 @@
+<!-- product-form.html -->
+<div id="add-product-form-container" class="add-product-form-container">
+  <form id="add-product-form">
+    <h2>Add New Product</h2>
+    <label for="product-name">Product Name:</label>
+    <input type="text" id="product-name" name="product-name" required />
+    <label for="product-condition">Condition:</label>
+    <input
+      type="text"
+      id="product-condition"
+      name="product-condition"
+      required
+    />
+    <label for="product-image">Image URL:</label>
+    <input type="text" id="product-image" name="product-image" required />
+    <label for="product-status">Status:</label>
+    <select id="product-status" name="product-status" required>
+      <option value="available">Available</option>
+      <option value="sold">Sold</option>
+    </select>
+    <label for="product-city">City:</label>
+    <select id="product-city" name="product-city" required>
+      <option value="Damascus">Damascus</option>
+      <option value="Aleppo">Aleppo</option>
+      <option value="Homs">Homs</option>
+      <option value="Latakia">Latakia</option>
+      <option value="Tartus">Tartus</option>
+    </select>
+    <button type="submit">Add Product</button>
+    <button type="button" id="cancel-button">Cancel</button>
+  </form>
+</div>

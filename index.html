@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
   <meta charset="UTF-8">
@@ -178,3 +179,52 @@
 </body>
 
 </html>
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blue Market</title>
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div>
+      <div w3-include-html="components/navigation/navigation.html"></div>
+    </div>
+    <div w3-include-html="components/header/header.html"></div>
+
+    <!-- Main Content -->
+    <main> 
+       <!-- Add Product Form -->
+      <div w3-include-html="components/product-form.html"></div>
+      
+      <!-- Product Grid -->
+      <div w3-include-html="components/product-grid.html"></div>
+
+    
+    </main>
+
+    <!-- Chat -->
+    <div id="chat-container" class="chat-container">
+      <div w3-include-html="components/chat.html"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Blue Market. All rights reserved.</p>
+    </footer>
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+
+    <script>
+      w3.includeHTML();
+    </script>
+  </body>
+</html>
+>>>>>>> bebc4f99e7147001e76be8d4bf10f81ee7f7316b
