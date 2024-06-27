@@ -1,127 +1,135 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const addProductButton = document.getElementById("add-product-button");
-  const addProductFormContainer = document.getElementById(
-    "add-product-form-container"
-  );
-  const cancelButton = document.getElementById("cancel-button");
-  const chatToggle = document.getElementById("chat-toggle");
-  const chatContainer = document.getElementById("chat-container");
-  const chatOverlay = document.getElementById("chat-overlay");
+w3.includeHTML(init);
 
-  // Add product form functionality
-  addProductButton.addEventListener("click", function () {
-    addProductFormContainer.style.display = "flex";
-    chatContainer.style.display = "none"; // Hide chat container when adding a product
-    chatOverlay.style.display = "none"; // Also hide chat overlay if needed
-  });
+  function init() {
+    document.addEventListener("DOMContentLoaded", function () {
+      // استدعاء العناصر من DOM
+      const addProductButton = document.getElementById("add-product-button");
+      const addProductFormContainer = document.getElementById("add-product-form-container");
+      const cancelButton = document.getElementById("cancel-button");
+      const chatToggle = document.getElementById("chat-toggle");
+      const chatContainer = document.getElementById("chat-container");
+      const chatOverlay = document.getElementById("chat-overlay");
+      const addProductForm = document.getElementById("add-product-form");
 
-  cancelButton.addEventListener("click", function () {
-    addProductFormContainer.style.display = "none";
-  });
+      // تأكد من وجود العناصر قبل التفاعل معها
+      if (addProductButton && addProductFormContainer && cancelButton && addProductForm) {
+        // إضافة حدث لزر إضافة المنتج
+        addProductButton.addEventListener("click", function () {
+          addProductFormContainer.style.display = "flex";
+          chatContainer.style.display = "none"; // إخفاء صندوق المحادثة عند إضافة منتج
+          chatOverlay.style.display = "none"; // إخفاء الطبقة الشفافة إن وجدت
+        });
 
-  addProductForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+        // إضافة حدث لزر الإلغاء
+        cancelButton.addEventListener("click", function () {
+          addProductFormContainer.style.display = "none";
+        });
 
-    // Retrieve form data
-    const productName = document.getElementById("product-name").value;
-    const productCondition = document.getElementById("product-condition").value;
-    const productImage = document.getElementById("product-image").value;
-    const productStatus = document.getElementById("product-status").value;
-    const productCity = document.getElementById("product-city").value;
+        // معالجة إرسال النموذج
+        addProductForm.addEventListener("submit", function (event) {
+          event.preventDefault();
 
-    // Create new product card
-    const productGrid = document.getElementById("product-grid");
-    const newProductCard = document.createElement("div");
-    newProductCard.className = "product-card";
-    newProductCard.innerHTML = `
-        <img src="${productImage}" alt="${productName}">
-        <div class="product-details">
-          <h3>${productName}</h3>
-          <p>Condition: ${productCondition}</p>
-          <p>Status: ${productStatus}</p>
-          <p>City: ${productCity}</p>
-          <button class="chat-button">Chat with Seller</button>
-          <button class="sell-button">Mark as Sold</button>
-        </div>
-      `;
+          // الحصول على بيانات النموذج
+          const productName = document.getElementById("product-name").value;
+          const productCondition = document.getElementById("product-condition").value;
+          const productImage = document.getElementById("product-image").value;
+          const productStatus = document.getElementById("product-status").value;
+          const productCity = document.getElementById("product-city").value;
 
-    // Append new product card to the grid
-    productGrid.insertBefore(newProductCard, addProductButton);
+          // إنشاء بطاقة منتج جديدة
+          const productGrid = document.getElementById("product-grid");
+          const newProductCard = document.createElement("div");
+          newProductCard.className = "product-card";
+          newProductCard.innerHTML = `
+              <img src="${productImage}" alt="${productName}">
+              <div class="product-details">
+                <h3>${productName}</h3>
+                <p>Condition: ${productCondition}</p>
+                <p>Status: ${productStatus}</p>
+                <p>City: ${productCity}</p>
+                <button class="chat-button">Chat with Seller</button>
+                <button class="sell-button">Mark as Sold</button>
+              </div>
+            `;
 
-    // Reset and hide the form
-    addProductForm.reset();
-    addProductFormContainer.style.display = "none";
-  });
+          // إضافة بطاقة المنتج الجديدة إلى الشبكة
+          productGrid.insertBefore(newProductCard, addProductButton);
 
-  // Sample chat list data
-  const chatList = [
-    { id: 1, name: "Seller 1", img: "avatar1.jpg" },
-    { id: 2, name: "Seller 2", img: "avatar2.jpg" },
-    { id: 3, name: "Seller 3", img: "avatar3.jpg" },
-  ];
+          // إعادة تعيين وإخفاء النموذج
+          addProductForm.reset();
+          addProductFormContainer.style.display = "none";
+        });
+      }
 
-  // Sample chat messages
-  const chatMessages = {
-    1: [
-      { sender: "user", message: "Hello, I am interested in your product." },
-      { sender: "seller", message: "Hi! It's available. How can I help you?" },
-    ],
-    2: [
-      { sender: "user", message: "Is the product still available?" },
-      { sender: "seller", message: "Yes, it is." },
-    ],
-    3: [
-      { sender: "user", message: "What is the condition of the product?" },
-      { sender: "seller", message: "It's in excellent condition." },
-    ],
-  };
+      // بيانات المحادثات النموذجية
+      const chatList = [
+        { id: 1, name: "Seller 1", img: "avatar1.jpg" },
+        { id: 2, name: "Seller 2", img: "avatar2.jpg" },
+        { id: 3, name: "Seller 3", img: "avatar3.jpg" },
+      ];
 
-  // Populate chat list
-  const chatListElement = document.querySelector(".chat-list");
-  if (chatListElement) {
-    chatList.forEach((chat) => {
-      const listItem = document.createElement("div");
-      listItem.className = "chat-item";
-      listItem.innerHTML = `<img src="${chat.img}" alt="Avatar"> Chat with ${chat.name}`;
-      listItem.addEventListener("click", function () {
-        loadChat(chat.id);
-      });
-      chatListElement.appendChild(listItem);
-    });
-  }
+      const chatMessages = {
+        1: [
+          { sender: "user", message: "Hello, I am interested in your product." },
+          { sender: "seller", message: "Hi! It's available. How can I help you?" },
+        ],
+        2: [
+          { sender: "user", message: "Is the product still available?" },
+          { sender: "seller", message: "Yes, it is." },
+        ],
+        3: [
+          { sender: "user", message: "What is the condition of the product?" },
+          { sender: "seller", message: "It's in excellent condition." },
+        ],
+      };
 
-  // Load chat messages
-  function loadChat(chatId) {
-    const chatBox = document.querySelector(".messages");
-    chatBox.innerHTML = "";
-    if (chatMessages[chatId]) {
-      chatMessages[chatId].forEach((msg) => {
-        const messageElement = document.createElement("div");
-        messageElement.className = `chat-message ${msg.sender}`;
-        messageElement.textContent = msg.message;
-        chatBox.appendChild(messageElement);
-      });
-    }
+      // ملء قائمة المحادثات
+      const chatListElement = document.querySelector(".chat-list");
+      if (chatListElement) {
+        chatList.forEach((chat) => {
+          const listItem = document.createElement("div");
+          listItem.className = "chat-item";
+          listItem.innerHTML = `<img src="${chat.img}" alt="Avatar"> Chat with ${chat.name}`;
+          listItem.addEventListener("click", function () {
+            loadChat(chat.id);
+          });
+          chatListElement.appendChild(listItem);
+        });
+      }
 
-    // Scroll to bottom of chat box
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }
+      // تحميل رسائل المحادثة
+      function loadChat(chatId) {
+        const chatBox = document.querySelector(".messages");
+        chatBox.innerHTML = "";
+        if (chatMessages[chatId]) {
+          chatMessages[chatId].forEach((msg) => {
+            const messageElement = document.createElement("div");
+            messageElement.className = `chat-message ${msg.sender}`;
+            messageElement.textContent = msg.message;
+            chatBox.appendChild(messageElement);
+          });
+        }
 
-  // Send new message
-  const sendButton = document.querySelector(".new-message button");
-  const messageInput = document.querySelector(".new-message input");
-  if (sendButton && messageInput) {
-    sendButton.addEventListener("click", function () {
-      const newMessage = messageInput.value.trim();
-      if (newMessage) {
-        const messageElement = document.createElement("div");
-        messageElement.className = "chat-message user";
-        messageElement.textContent = newMessage;
-        document.querySelector(".messages").appendChild(messageElement);
-        messageInput.value = "";
-        document.querySelector(".messages").scrollTop =
-          document.querySelector(".messages").scrollHeight;
+        // التمرير إلى أسفل صندوق المحادثة
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      // إرسال رسالة جديدة
+      const sendButton = document.querySelector(".new-message button");
+      const messageInput = document.querySelector(".new-message input");
+      if (sendButton && messageInput) {
+        sendButton.addEventListener("click", function () {
+          const newMessage = messageInput.value.trim();
+          if (newMessage) {
+            const messageElement = document.createElement("div");
+            messageElement.className = "chat-message user";
+            messageElement.textContent = newMessage;
+            document.querySelector(".messages").appendChild(messageElement);
+            messageInput.value = "";
+            document.querySelector(".messages").scrollTop =
+              document.querySelector(".messages").scrollHeight;
+          }
+        });
       }
     });
   }
-});
